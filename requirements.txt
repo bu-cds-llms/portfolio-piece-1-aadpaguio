@@ -1,0 +1,14 @@
+# Core dependencies for Filipino-English BPE Tokenizer
+datasets>=2.14.0
+tokenizers>=0.15.0
+transformers>=4.35.0
+torch>=2.1.0
+numpy>=1.24.0
+
+# Optional dependencies for Jupyter notebook
+jupyter>=1.0.0
+ipykernel>=6.25.0
+
+# Utility packages
+tqdm>=4.65.0
+requests>=2.31.0
