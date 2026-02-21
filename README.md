@@ -62,13 +62,15 @@ This project trains a BERT-style encoder–decoder for **Tagalog/Filipino → En
 - **Qualitative:** Sampled translations are coherent and often semantically close to references; the model handles mixed Tagalog–English and reordering (e.g. *karaniwan* sentences) reasonably. Some errors on specific examples (noted in the notebook).
 - **Attention:** Cross-attention heatmaps show a “lagged” diagonal when source and target order align; for predicate-first Tagalog (e.g. *Tama ba ang pahayag?*), attention is more scattered as the model reorders into English.
 
+  ![Cross-attention heatmap sample](images/cross_attention_sample.png)
+
 ### 4. How to Run
 
 **Recommended: Google Colab (GPU).**
 
 **Full run (train from scratch):**
 
-1. Open the project repo and open **`train_model_colab.ipynb`** in Colab (e.g. “Open in Colab” if the repo is set up for it, or upload the notebook to Colab).
+1. Open the project repo and open **`notebooks/BERT_MODEL_TRAINING.ipynb`** in Colab (e.g. “Open in Colab” if the repo is set up for it, or upload/clone the repo and open the notebook from the `notebooks/` folder).
 2. In Colab: **Runtime → Change runtime type → GPU** (e.g. T4 or better).
 3. Run the notebook top to bottom. The first cell installs: `datasets`, `transformers`, `tokenizers`, `torch`, `accelerate`, `evaluate`, `sacrebleu`. Later cells mount Drive (if you want to save the model), load the dataset, train the tokenizer, preprocess, build the model, train, evaluate, and run translation + attention visualization.
 4. Optional: To save the trained model, set your Drive path and use the “Save model” section; to load it later, use the “Load model later” section with the same path.
@@ -82,7 +84,7 @@ You do **not** need to train the model or tokenizer. Training the tokenizer from
    **[filipino_english_model – Google Drive](https://drive.google.com/drive/folders/1jk6voLoebrpR4kcZkGbr7XcG0Jg0UaFJ?usp=sharing)**  
    The folder contains `config.json`, `tokenizer.json`, `tokenizer_config.json`, `model.safetensors`, `generation_config.json`, and related files.
 
-2. Open **`BERT_MODEL_TRAINING.ipynb`** in Colab and set **Runtime → Change runtime type → GPU**.
+2. Open **`notebooks/BERT_MODEL_TRAINING.ipynb`** in Colab and set **Runtime → Change runtime type → GPU**.
 
 3. Run **Setup and Installation** (Section 1), then **Mounting Google Drive** (Section 2). After mounting, set the path in the notebook to the folder you copied (e.g. if the folder is in your Drive root: `/content/drive/MyDrive/filipino_english_model`). See the **“15. Load Model Later”** section for the exact variable to set.
 
@@ -112,7 +114,7 @@ Optional: `pip install torchvista` if you want to regenerate the architecture vi
 
 An interactive view of the encoder–decoder layout (encoder vs decoder blocks, where encoder outputs feed into decoder cross-attention) was produced with **TorchVista** and saved as HTML. You can open it in a browser to expand/collapse modules and follow the data flow.
 
-**View the diagram:** [**BERT_MODEL.html**](BERT_MODEL.html) (open in the repo or download and open in a browser).
+**View the diagram:** [**outputs/BERT_MODEL.html**](outputs/BERT_MODEL.html) (open in the repo or download and open in a browser).
 
 ## Peer Review Process
 
